@@ -1,5 +1,3 @@
-# Auto detect text files and perform LF normalization
-* text=auto
 <!DOCTYPE html>
 <html lang="ro">
 <head>
@@ -21,13 +19,14 @@
         }
 
         .container {
-            position: relative;
+            max-width: 600px;
             padding: 20px;
         }
 
         img {
             width: 150px;
             margin-bottom: 20px;
+            transition: all 0.3s ease;
         }
 
         h2 {
@@ -39,17 +38,18 @@
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             color: #e63946;
             margin: 10px 0 40px 0;
         }
 
         .buttons {
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            gap: 15px;
-            height: 150px; /* Spațiu pentru ca butonul Nu să poată fugi */
+            gap: 20px;
+            flex-wrap: wrap;
+            min-height: 100px;
         }
 
         .btn {
@@ -59,7 +59,7 @@
             border: none;
             border-radius: 30px;
             cursor: pointer;
-            transition: transform 0.1s ease;
+            transition: all 0.2s ease;
         }
 
         #yesBtn {
@@ -71,48 +71,73 @@
         #noBtn {
             background-color: #f4a261;
             color: white;
-            position: absolute; /* Permite mutarea butonului oriunde */
+            box-shadow: 0 4px 15px rgba(244, 162, 97, 0.4);
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- Poți schimba link-ul imaginii cu orice gif/imagine drăguță -->
-        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWdtcmM0bnd5MW95Ym85MGptY3B1Y3g0eXFib3p3bTM0N3B0ZXZyayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="Cute Cupid">
+        <img id="jocImg" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWdtcmM0bnd5MW95Ym85MGptY3B1Y3g0eXFib3p3bTM0N3B0ZXZyayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="Cute Cupid">
         
-        <h2>Nici o obligatie... spune da 🙏</h2>
-        <h1>Will Vrei sa iesim afara amandoi?</h1>
+        <h2 id="subtitlu">Nicio obligație... spune da 🙏</h2>
+        <h1 id="intrebare">Vrei să ieșim afară amândoi?</h1>
 
         <div class="buttons">
             <button class="btn" id="yesBtn" onclick="aiSpusDa()">Da ✨</button>
-            <button class="btn" id="noBtn" onmouseover="fugiDeCursor()" onclick="fugiDeCursor()">No</button>
+            <button class="btn" id="noBtn" onclick="aiSpusNu()">Nu</button>
         </div>
     </div>
 
     <script>
+        const yesBtn = document.getElementById('yesBtn');
         const noBtn = document.getElementById('noBtn');
+        const intrebare = document.getElementById('intrebare');
+        const subtitlu = document.getElementById('subtitlu');
+        const jocImg = document.getElementById('jocImg');
 
-        // Funcția care mută butonul „Nu” în poziții aleatorii
-        function fugiDeCursor() {
-            // Calculăm lățimea și înălțimea ferestrei
-            const latimeFereastra = window.innerWidth - noBtn.offsetWidth;
-            const inaltimeFereastra = window.innerHeight - noBtn.offsetHeight;
+        let dimensiuneYes = 1.2; // Dimensiunea inițială a textului din butonul DA (în rem)
+        let paddingYesX = 40;    // Padding stânga-dreapta inițial
+        let paddingYesY = 15;    // Padding sus-jos inițial
+        let numarApasariNu = 0;
 
-            // Generăm coordonate aleatorii
-            const xAleatoru = Math.floor(Math.random() * latimeFereastra);
-            const yAleatoru = Math.floor(Math.random() * inaltimeFereastra);
+        // Lista de mesaje amuzante care apar dacă apasă NU
+        const mesajeNu = [
+            "Sigur nu vrei? 🥺",
+            "Mai gândește-te o dată... 🥺",
+            "Te rog? 🌹",
+            "Îți dau o înghețată! 🍦",
+            "Apasă pe celălalt buton! 👈"
+        ];
 
-            // Aplicăm noile coordonate butonului
-            noBtn.style.left = xAleatoru + 'px';
-            noBtn.style.top = yAleatoru + 'px';
+        function aiSpusNu() {
+            numarApasariNu++;
+
+            // Schimbăm textul întrebării cu un mesaj de convingere
+            if (numarApasariNu <= mesajeNu.length) {
+                intrebare.innerText = mesajeNu[numarApasariNu - 1];
+            } else {
+                intrebare.innerText = "Nu prea ai de ales! 😉";
+            }
+
+            // Facem butonul DA din ce în ce mai mare!
+            dimensiuneYes += 0.3;
+            paddingYesX += 15;
+            paddingYesY += 5;
+
+            yesBtn.style.fontSize = dimensiuneYes + "rem";
+            yesBtn.style.padding = paddingYesY + "px " + paddingYesX + "px";
         }
 
-        // Ce se întâmplă când apasă „Da”
         function aiSpusDa() {
-            alert("Știam eu! ❤️ Ne vedem afara!");
-            // Opțional, poți trimite utilizatorul către un alt site (ex: un chat de WhatsApp)
-            // window.location.href = "https://wa.me/numarultau";
+            // Schimbăm titlul, subtitlul și imaginea cu ceva fericit
+            subtitlu.innerText = "YAY! 🎉";
+            intrebare.innerText = "Știam eu! ❤️ Ne auzim pe chat să stabilim când!";
+            jocImg.src = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbms1cmZ0am9za294b3g3bndpY3g0eXFpazV3Ym96dG0zN3B0ZXZyayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/26FLdmip65auYCj6w/giphy.gif"; // GIF cu inimioare/fericire
+            
+            // Ascundem butoanele după ce s-a apăsat DA
+            yesBtn.style.display = "none";
+            noBtn.style.display = "none";
         }
     </script>
 

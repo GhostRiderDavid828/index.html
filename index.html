@@ -49,7 +49,7 @@
             flex-direction: column;
             align-items: center;
             gap: 15px;
-            height: 150px; /* Spațiu pentru ca butonul NO să poată fugi */
+            height: 150px; /* Spațiu pentru ca butonul Nu să poată fugi */
         }
 
         .btn {
@@ -81,11 +81,11 @@
         <!-- Poți schimba link-ul imaginii cu orice gif/imagine drăguță -->
         <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWdtcmM0bnd5MW95Ym85MGptY3B1Y3g0eXFib3p3bTM0N3B0ZXZyayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="Cute Cupid">
         
-        <h2>No pressure but... say yes 🙏</h2>
-        <h1>Will you go on a date with me?</h1>
+        <h2>Nici o obligatie... spune da 🙏</h2>
+        <h1>Will Vrei sa iesim afara amandoi?</h1>
 
         <div class="buttons">
-            <button class="btn" id="yesBtn" onclick="aiSpusDa()">Yes ✨</button>
+            <button class="btn" id="yesBtn" onclick="aiSpusDa()">Da ✨</button>
             <button class="btn" id="noBtn" onmouseover="fugiDeCursor()" onclick="fugiDeCursor()">No</button>
         </div>
     </div>
@@ -93,7 +93,7 @@
     <script>
         const noBtn = document.getElementById('noBtn');
 
-        // Funcția care mută butonul „No” în poziții aleatorii
+        // Funcția care mută butonul „Nu” în poziții aleatorii
         function fugiDeCursor() {
             // Calculăm lățimea și înălțimea ferestrei
             const latimeFereastra = window.innerWidth - noBtn.offsetWidth;
@@ -108,9 +108,9 @@
             noBtn.style.top = yAleatoru + 'px';
         }
 
-        // Ce se întâmplă când apasă „Yes”
+        // Ce se întâmplă când apasă „Da”
         function aiSpusDa() {
-            alert("Știam eu! ❤️ Ne vedem la întâlnire!");
+            alert("Știam eu! ❤️ Ne vedem afara!");
             // Opțional, poți trimite utilizatorul către un alt site (ex: un chat de WhatsApp)
             // window.location.href = "https://wa.me/numarultau";
         }

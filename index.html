@@ -127,23 +127,19 @@
 
         function aiSpusDa() {
             subtitlu.innerText = "YAY! 🎉";
-            intrebare.innerText = "Te trimit pe chat să stabilim detaliile... ❤️";
+            intrebare.innerText = "Te trimit pe pagina următoare să alegi când și unde... ❤️";
             jocImg.src = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbnk1cmZ0am9za294b3g3bndpY3g0eXFpazV3Ym96dG0zN3B0ZXZyayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/26FLdmip65auYCj6w/giphy.gif";
             
             yesBtn.style.display = "none";
             noBtn.style.display = "none";
 
-            // Așteaptă 2 secunde ca să vadă animația și mesajul, apoi o trimite pe chat
+            // Așteaptă 2 secunde și o redirecționează către formularul tău Google
             setTimeout(function() {
                 
-                // --- CONFIGURARE LINK ---
-                // VARIANTA A (WhatsApp): Înlocuiește 40712345678 cu numărul tău (pune codul țării 40 în față)
-                const linkChat = "https://wa.me/40712345678?text=Am%20spus%20DA!%20%E2%A5%A0%20C%C3%A2nd%20%C8%99i%20unde%20ne%20vedem%3F";
-                
-                // VARIANTA B (Instagram): Dacă preferi Insta, șterge // din fața liniei de mai jos și pune profilul tău:
-                // const linkChat = "https://instagram.com/numel_tau_de_insta";
+                // ÎNLOCUIEȘTE textul de mai jos (păstrează ghilimelele) cu link-ul tău de la Google Forms:
+                const linkFormular = "https://forms.gle/YQmgsmoywnbJvktM6";
 
-                window.location.href = linkChat;
+                window.location.href = linkFormular;
 
             }, 2000); 
         }
